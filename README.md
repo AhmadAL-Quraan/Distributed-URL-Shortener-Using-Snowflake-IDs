@@ -49,59 +49,59 @@ Store the mappings of shortened URLs to original URLs in a shared database (e.g.
 
        2) Load Balancer -> Web Server : forwardRequestToServer()
 
-Web Server -> Service Layer : processURLRequest()
+       3) Web Server -> Service Layer : processURLRequest()
 
-Service Layer -> Service Layer : generateSnowflakeID()
+4) Service Layer -> Service Layer : generateSnowflakeID()
 
-Service Layer -> Service Layer : convertToBase62()
+5) Service Layer -> Service Layer : convertToBase62()
 
-Service Layer -> Repository : saveURLMapping()
+6) Service Layer -> Repository : saveURLMapping()
 
-Repository -> Database : storeInDatabase()
+7) Repository -> Database : storeInDatabase()
 
-Database -> Repository : acknowledgeSave()
+8) Database -> Repository : acknowledgeSave()
 
-Repository -> Service Layer : returnAcknowledge()
+9) Repository -> Service Layer : returnAcknowledge()
 
-Service Layer -> Web Server : returnShortenedURL()
+10) Service Layer -> Web Server : returnShortenedURL()
 
-Web Server -> Load Balancer : returnShortenedURL()
+11) Web Server -> Load Balancer : returnShortenedURL()
 
-Load Balancer -> User : returnShortenedURL()
+12) Load Balancer -> User : returnShortenedURL()
 
 
 
 
 * Sequence Diagram for Accessing a Shortened URL:
 
-User -> Load Balancer : accessShortenedURL()
+      1) User -> Load Balancer : accessShortenedURL()
 
 
-Load Balancer -> Web Server : forwardRequestToServer()
+      2) Load Balancer -> Web Server : forwardRequestToServer()
 
 
-Web Server -> Service Layer : processRetrieveRequest()
+       3) Web Server -> Service Layer : processRetrieveRequest()
 
 
-Service Layer -> Repository : findOriginalURL()
+        4) Service Layer -> Repository : findOriginalURL()
 
 
-Repository -> Database : lookupOriginalURL()
+       5) Repository -> Database : lookupOriginalURL()
 
 
-Database -> Repository : returnOriginalURL()
+      6) Database -> Repository : returnOriginalURL()
 
 
-Repository -> Service Layer : returnOriginalURL()
+         7) Repository -> Service Layer : returnOriginalURL()
 
 
-Service Layer -> Web Server : returnOriginalURL()
+      8) Service Layer -> Web Server : returnOriginalURL()
 
 
-Web Server -> Load Balancer : returnOriginalURL()
+      9) Web Server -> Load Balancer : returnOriginalURL()
 
 
-Load Balancer -> User : returnOriginalURL()
+      10) Load Balancer -> User : returnOriginalURL()
 
 
 * The Snowflake ID generation approach is a widely-used method for generating unique IDs in a distributed system. It was originally developed by Twitter and is useful in systems where you need to generate unique identifiers quickly across multiple machines with minimal coordination.
