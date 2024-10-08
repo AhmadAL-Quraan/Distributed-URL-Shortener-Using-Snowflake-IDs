@@ -45,40 +45,31 @@ Store the mappings of shortened URLs to original URLs in a shared database (e.g.
 
 * UML Sequence Diagram for URL Shortening (Key Elements):
 
-User -> Load Balancer : submitLongURL()
+  ** User -> Load Balancer : submitLongURL()
 
-
-Load Balancer -> Web Server : forwardRequestToServer()
-
+** Load Balancer -> Web Server : forwardRequestToServer()
 
 Web Server -> Service Layer : processURLRequest()
 
-
 Service Layer -> Service Layer : generateSnowflakeID()
-
 
 Service Layer -> Service Layer : convertToBase62()
 
-
 Service Layer -> Repository : saveURLMapping()
-
 
 Repository -> Database : storeInDatabase()
 
-
 Database -> Repository : acknowledgeSave()
-
 
 Repository -> Service Layer : returnAcknowledge()
 
-
 Service Layer -> Web Server : returnShortenedURL()
-
 
 Web Server -> Load Balancer : returnShortenedURL()
 
-
 Load Balancer -> User : returnShortenedURL()
+
+
 
 
 * Sequence Diagram for Accessing a Shortened URL:
