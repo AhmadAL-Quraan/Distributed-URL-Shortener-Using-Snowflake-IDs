@@ -51,23 +51,23 @@ Store the mappings of shortened URLs to original URLs in a shared database (e.g.
 
        3) Web Server -> Service Layer : processURLRequest()
 
-4) Service Layer -> Service Layer : generateSnowflakeID()
+       4) Service Layer -> Service Layer : generateSnowflakeID()
 
-5) Service Layer -> Service Layer : convertToBase62()
+       5) Service Layer -> Service Layer : convertToBase62()
 
-6) Service Layer -> Repository : saveURLMapping()
+       6) Service Layer -> Repository : saveURLMapping()
 
-7) Repository -> Database : storeInDatabase()
+       7) Repository -> Database : storeInDatabase()
 
-8) Database -> Repository : acknowledgeSave()
+       8) Database -> Repository : acknowledgeSave()
 
-9) Repository -> Service Layer : returnAcknowledge()
+       9) Repository -> Service Layer : returnAcknowledge()
 
-10) Service Layer -> Web Server : returnShortenedURL()
+       10) Service Layer -> Web Server : returnShortenedURL()
 
-11) Web Server -> Load Balancer : returnShortenedURL()
+       11) Web Server -> Load Balancer : returnShortenedURL()
 
-12) Load Balancer -> User : returnShortenedURL()
+       12) Load Balancer -> User : returnShortenedURL()
 
 
 
@@ -80,19 +80,19 @@ Store the mappings of shortened URLs to original URLs in a shared database (e.g.
       2) Load Balancer -> Web Server : forwardRequestToServer()
 
 
-       3) Web Server -> Service Layer : processRetrieveRequest()
+      3) Web Server -> Service Layer : processRetrieveRequest()
 
 
-        4) Service Layer -> Repository : findOriginalURL()
+      4) Service Layer -> Repository : findOriginalURL()
 
 
-       5) Repository -> Database : lookupOriginalURL()
+      5) Repository -> Database : lookupOriginalURL()
 
 
       6) Database -> Repository : returnOriginalURL()
 
 
-         7) Repository -> Service Layer : returnOriginalURL()
+      7) Repository -> Service Layer : returnOriginalURL()
 
 
       8) Service Layer -> Web Server : returnOriginalURL()
