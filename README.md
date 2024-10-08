@@ -43,7 +43,7 @@ Store the mappings of shortened URLs to original URLs in a shared database (e.g.
 ## Overview
 
 
-UML Sequence Diagram for URL Shortening (Key Elements):
+* UML Sequence Diagram for URL Shortening (Key Elements):
 
 User -> Load Balancer : submitLongURL()
 
@@ -81,7 +81,7 @@ Web Server -> Load Balancer : returnShortenedURL()
 Load Balancer -> User : returnShortenedURL()
 
 
-Sequence Diagram for Accessing a Shortened URL:
+* Sequence Diagram for Accessing a Shortened URL:
 
 User -> Load Balancer : accessShortenedURL()
 
