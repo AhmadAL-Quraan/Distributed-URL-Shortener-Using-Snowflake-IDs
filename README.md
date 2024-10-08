@@ -2,17 +2,41 @@
 
 Task: Build a Distributed URL Shortener Using Snowflake IDs
 Objective:
+
+
 Create a URL shortening service using Snowflake IDs with base conversion (to produce 7-8 character identifiers). The system should have at least two web servers behind a load balancer to ensure scalability and high availability.
+
+
 Key Requirements:
+
+
 Snowflake ID Generation:
+
+
 Generate unique Snowflake IDs and convert them to a higher base (e.g., Base62) for 7-8 character shortened URLs.
+
+
 URL Shortening:
+
+
 Users submit long URLs, which are shortened using the Snowflake ID. On accessing the short URL, the system retrieves and redirects to the original URL.
+
+
 Load Balancer:
+
+
 Set up a load balancer to distribute traffic across two or more web servers, ensuring the system continues functioning if one server goes down.
+
+
 Web Servers:
+
+
 Deploy at least two web servers that independently generate Snowflake IDs and handle URL shortening and redirection requests.
+
+
 Database:
+
+
 Store the mappings of shortened URLs to original URLs in a shared database (e.g., PostgreSQL), accessible by all web servers.
 
 ====================================================================================================
@@ -22,30 +46,70 @@ Store the mappings of shortened URLs to original URLs in a shared database (e.g.
 UML Sequence Diagram for URL Shortening (Key Elements):
 
 User -> Load Balancer : submitLongURL()
+
+
 Load Balancer -> Web Server : forwardRequestToServer()
+
+
 Web Server -> Service Layer : processURLRequest()
+
+
 Service Layer -> Service Layer : generateSnowflakeID()
+
+
 Service Layer -> Service Layer : convertToBase62()
+
+
 Service Layer -> Repository : saveURLMapping()
+
+
 Repository -> Database : storeInDatabase()
+
+
 Database -> Repository : acknowledgeSave()
+
+
 Repository -> Service Layer : returnAcknowledge()
+
+
 Service Layer -> Web Server : returnShortenedURL()
+
+
 Web Server -> Load Balancer : returnShortenedURL()
+
+
 Load Balancer -> User : returnShortenedURL()
 
 
 Sequence Diagram for Accessing a Shortened URL:
 
 User -> Load Balancer : accessShortenedURL()
+
+
 Load Balancer -> Web Server : forwardRequestToServer()
+
+
 Web Server -> Service Layer : processRetrieveRequest()
+
+
 Service Layer -> Repository : findOriginalURL()
+
+
 Repository -> Database : lookupOriginalURL()
+
+
 Database -> Repository : returnOriginalURL()
+
+
 Repository -> Service Layer : returnOriginalURL()
+
+
 Service Layer -> Web Server : returnOriginalURL()
+
+
 Web Server -> Load Balancer : returnOriginalURL()
+
+
 Load Balancer -> User : returnOriginalURL()
 
 
@@ -74,6 +138,9 @@ Load Balancer -> User : returnOriginalURL()
 
 
 =================================================================================================================================
+
+  * I have used in this project the same application.properties and pom.xml as Codeforces_mimic_project
+
 
 ## What done so far:
 
